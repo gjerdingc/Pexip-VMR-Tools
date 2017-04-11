@@ -1,0 +1,24 @@
+﻿@model IList<SimpleWebPage.Models.VMR>
+
+@{
+    Layout = "~/Views/shared/_layout.cshtml";
+    ViewBag.Title = "Big Brother loves you";
+}
+
+
+@foreach (var vmr in Model)
+{
+    <h2>@vmr.name</h2>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="well">
+                <h5><b>Name:</b> @vmr.name</h5>
+                <h5><b>URI:</b> @vmr.aliases[0].alias</h5>
+                <h5><b>Meeting ID:</b> @vmr.aliases[1].alias</h5>
+                <h5><b>Host PIN:</b> @vmr.pin</h5>
+                <h5><b>Guest PIN:</b> @vmr.guest_pin</h5>
+            </div>
+        </div>
+    </div>
+}
