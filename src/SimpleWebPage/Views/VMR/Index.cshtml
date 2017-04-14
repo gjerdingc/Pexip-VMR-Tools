@@ -1,7 +1,16 @@
-﻿
+﻿@model IList<SimpleWebPage.Models.VMR>
+
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
+<div class="row">
+    @foreach (var vmr in Model)
+    {
+        <div class="col-md-12">
+            <h4>@vmr.name</h4>
+        </div>
+    }
+</div>
