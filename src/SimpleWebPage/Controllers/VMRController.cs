@@ -6,25 +6,36 @@ using System.Web.Mvc;
 using SimpleWebPage.Obj;
 using SimpleWebPage.Models;
 using System.Collections;
+using SimpleWebPage.Data;
 
 namespace SimpleWebPage.Controllers
 {
     public class VMRController : Controller
     {
         VMRGetRequests VMRGet = new VMRGetRequests();
+        private VMRRepository _vmrRepository = null;
 
-        public ActionResult Detail()
+        public VMRController()
         {
-            var VMRs = VMRGet.SearchVMRNames("Karl");
+            _vmrRepository = new VMRRepository("Nilsen");
+        }
 
-            return View(VMRs);
+        public ActionResult Detail(int? id)
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+
+            var VMR = _vmrRepository.GetVMR((int)id);
+
+            return View(VMR);
         }
 
         public ActionResult Index()
         {
-            var VMRs = VMRGet.SearchVMRNames("Christian");
-
-            return View(VMRs);
+            var VMRList = _vmrRepository.GetVMRList();
+            return View(VMRList);
         }
 
     }
