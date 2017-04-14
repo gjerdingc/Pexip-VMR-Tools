@@ -18,89 +18,11 @@ namespace SimpleWebPage.Obj
         private int ChosenVMRNumber { get; set; }
         private List<VMR> SearchedVMRs = new List<VMR>();
     
-        private static string username = "";
-        private static string password = "";
+        private static string username = "admin";
+        private static string password = "Jw9KnPYe28";
         private static string credentials = Convert.ToBase64String(ASCIIEncoding.ASCII.GetBytes(username + ":" + password));
 
-        public void DisplayVMRData(List<VMR> VMRList)
-        {
-
-            while (true)
-            {
-
-                int i = 1;
-
-                foreach (VMR vmr in VMRList)
-                {
-                    Console.Write(i + "   ");
-                    Console.WriteLine(vmr.name);
-                    i++;
-                }
-
-
-                //Zero based counting
-                ChosenVMRNumber = ChooseVMR(VMRList.Count) - 1;
-
-
-                Console.WriteLine("\nWhat Do you want to do with this room?");
-                Console.WriteLine("\n(1) Display URI");
-                Console.WriteLine("(2) Display Host PIN");
-                Console.WriteLine("(3) Display Guest PIN");
-                Console.WriteLine("(4) Go back");
-
-
-
-                while (true)
-                {
-                    string SelectedOption = Console.ReadLine();
-
-                    if (SelectedOption == "1")
-                    {
-                        Console.WriteLine("URI: " + VMRList[ChosenVMRNumber].aliases[0].alias);
-                        Console.WriteLine("ID: " + VMRList[ChosenVMRNumber].id);
-                    }
-                    else if (SelectedOption == "2")
-                    {
-                        Console.WriteLine("Host PIN: " + VMRList[ChosenVMRNumber].pin);
-                    }
-                    else if (SelectedOption == "3")
-                    {
-                        Console.WriteLine("Guest PIN: " + VMRList[ChosenVMRNumber].guest_pin);
-                    }
-                    else if (SelectedOption == "4")
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Choose option 1,2,3 or 4");
-                    }
-
-                }
-
-
-
-                Console.WriteLine("\nSelect another VMR? (y/n): ");
-                Continue = Console.ReadLine();
-
-                if (Continue != "n")
-                {
-                    Console.Clear();
-                }
-                else
-                {
-                    break;
-                }
-
-            }
-
-
-
-
-        }
-
         //Makes API call. Searches for VMRs based on the name field and returns a list of VMR objects.
-        //Prints out the result to console
         public List<VMR> SearchVMRNames(string NameToSearch)
         {
             ServicePointManager.ServerCertificateValidationCallback = (s, cert, chain, ssl) => true; //Ignores self signed SSL certificate
@@ -129,78 +51,6 @@ namespace SimpleWebPage.Obj
             return VMRs;
         }
 
-        //Takes length of VMR list as argument and returns a valid number chosen by user
-        public int ChooseVMR(int VMRCount)
-        {
-            int ChosenRoom;
-            string ChosenRoomInput;
-
-            while (true)
-            {
-                Console.WriteLine("\nSelect room: ");
-                ChosenRoomInput = Console.ReadLine();
-
-                if (Int32.TryParse(ChosenRoomInput, out ChosenRoom) && ChosenRoom <= VMRCount && ChosenRoom > 0)
-                {
-                    //Console.WriteLine("You selected room number: " + ChosenRoom);
-                    return ChosenRoom;
-                }
-                else
-                {
-                    Console.WriteLine("Enter a valid number !");
-                }
-            }
-        }
-
-        private string ChooseCustShort()
-        {
-            string CustShort;
-            int CustShortInt;
-
-
-            //Make sure CustShort is 4 digits. Should add 0's if user does not.
-
-            while (true)
-            {
-                Console.WriteLine("Enter CustShort 1 - 4 digits");
-                CustShort = Console.ReadLine();
-
-                while (true)
-                {
-                    if (Int32.TryParse(CustShort, out CustShortInt) && CustShortInt <= 9999 && CustShortInt > 0)
-                    {
-                        Console.WriteLine("You selected CustShort: " + CustShortInt);
-                        break;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Enter a valid number !");
-                        CustShort = Console.ReadLine();
-                    }
-                }
-
-                if (CustShort.Length <= 1)
-                {
-                    CustShort = "000" + CustShort;
-                    return CustShort;
-                }
-                else if (CustShort.Length <= 2)
-                {
-                    CustShort = "00" + CustShort;
-                    return CustShort;
-                }
-                else if (CustShort.Length <= 3)
-                {
-                    CustShort = "0" + CustShort;
-                    return CustShort;
-                }
-                else
-                {
-                    return CustShort;
-                }
-
-            }
-        }
 
         public string FindFreeAlias()
         {
@@ -273,6 +123,12 @@ namespace SimpleWebPage.Obj
             Console.WriteLine("First free meeting ID: " + FreeAlias);
 
             return FreeAlias;
+        }
+
+        //Need to code this method. It is referenced in FindFreeAlias !!
+        public string ChooseCustShort()
+        {
+            return null;
         }
     }
 }

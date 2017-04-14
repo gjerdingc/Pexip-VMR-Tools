@@ -15,40 +15,16 @@ namespace SimpleWebPage.Controllers
 
         public ActionResult Detail()
         {
-            /*List<VMR> vmr = new List<VMR>()
-            {
+            var VMRs = VMRGet.SearchVMRNames("Karl");
 
-                new VMR
-                {
-                    name = "Christian Gjerdingen (Ateademo)",
-                    aliases = new List<Alias>()
-                    {
-                        new Alias {alias = "meet.chrgjerd@ateademo.com", description = "Meeting URI" },
-                        new Alias {alias = "190020100000", description = "Meeting ID" }
-                    },
-                    pin = "3352",
-                    guest_pin = "1234",
-                    id = 1267,
-                    description = "Perfectly pneumatic"
-                    },
+            return View(VMRs);
+        }
 
-                new VMR
-                {
-                    name = "Petter Edderkopp (Ateademo)",
-                    aliases = new List<Alias>()
-                    {
-                        new Alias {alias = "meet.petedd@ateademo.com", description = "Meeting URI" },
-                        new Alias {alias = "190020100001", description = "Meeting ID" }
-                    },
-                    pin = "5644",
-                    guest_pin = "1234",
-                    id = 2620,
-                    description = "So hairy"
-                }    
+        public ActionResult Index()
+        {
+            var VMRs = VMRGet.SearchVMRNames("Christian");
 
-            };*/
-
-            return View(VMRGet.SearchVMRNames("Karl"));
+            return View(VMRs);
         }
 
     }
