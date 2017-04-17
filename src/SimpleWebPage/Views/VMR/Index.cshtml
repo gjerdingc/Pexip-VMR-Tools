@@ -10,7 +10,13 @@
     @foreach (var vmr in Model)
     {
         <div class="col-md-12">
-            <h4>@Html.ActionLink(vmr.name, "Detail", new { id = vmr.id })</h4>
+            <div class="col-sm-6">
+                <h4>@Html.ActionLink(vmr.name, "Detail", new { id = vmr.id, Style = "color:White;" })</h4>
+            </div>
+
+            <div class="col-sm-6">
+                <h4>@vmr.description</h4>
+            </div>
         </div>
     }
 </div>

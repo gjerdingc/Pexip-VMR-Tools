@@ -9,3 +9,8 @@
 .navbar-inverse .navbar-brand {
     color: white;
 }
+
+a {
+    color: forestgreen;
+    text-decoration: none;
+}

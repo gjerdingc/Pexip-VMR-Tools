@@ -3,6 +3,7 @@ using RestSharp;
 using SimpleWebPage.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -20,13 +21,16 @@ namespace SimpleWebPage.Data
         private int ChosenVMRNumber { get; set; }
         private List<VMR> SearchedVMRs = new List<VMR>();
 
-        private static string username = "admin";
-        private static string password = "Jw9KnPYe28";
+        private static string username = "";
+        private static string password = "";
         private static string credentials = Convert.ToBase64String(ASCIIEncoding.ASCII.GetBytes(username + ":" + password));
 
-
+        //Commenting out this constructor as I read VMRs from a file instead while developing
+        /*
         public VMRRepository (string NameToSearch)
         {
+
+
             ServicePointManager.ServerCertificateValidationCallback = (s, cert, chain, ssl) => true; //Ignores self signed SSL certificate
 
             string NameSearchUri = "/api/admin/configuration/v1/conference/?name__contains=" + NameToSearch;
@@ -49,9 +53,14 @@ namespace SimpleWebPage.Data
 
                 VMRs.AddRange(rootObject.objects);
             }
+            }*/
 
+
+       public VMRRepository()
+       {
+            List<VMR> VMRs = JsonConvert.DeserializeObject<List<VMR>>(File.ReadAllText(@"c:\ToJson.txt"));
             _vmrs = VMRs;
-        }
+       }
 
         public VMR GetVMR(int id)
         {

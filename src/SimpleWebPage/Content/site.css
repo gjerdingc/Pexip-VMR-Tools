@@ -19,7 +19,7 @@ textarea {
 /* Backbar Styles */
 .backbar{
   width: 100%;
-  background-color: #555;
+  background-color: rgba(85, 85, 85, 0.72);
   margin-top: -10px;
   height: 45px;
 }

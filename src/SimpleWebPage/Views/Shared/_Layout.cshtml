@@ -28,13 +28,22 @@
         </div>
     </div>
 
+    @if (ViewBag.ShowBackBar != null && ViewBag.ShowBackBar)
+            {
+        <div class="backbar">
+            <div class="container">
+                @Html.ActionLink("Return to List", "Index", null, new { @class = "btn btn-info" })
+            </div>
+        </div>
+    }
+
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Anywhere VMR tools</p>
-        </footer>
-    </div>
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Anywhere VMR tools</p>
+            </footer>
+        </div>
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>

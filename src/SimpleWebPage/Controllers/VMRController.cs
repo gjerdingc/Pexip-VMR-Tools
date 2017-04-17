@@ -17,7 +17,7 @@ namespace SimpleWebPage.Controllers
 
         public VMRController()
         {
-            _vmrRepository = new VMRRepository("Nilsen");
+            _vmrRepository = new VMRRepository();
         }
 
         public ActionResult Detail(int? id)
