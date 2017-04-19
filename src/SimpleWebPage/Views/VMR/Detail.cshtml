@@ -12,10 +12,24 @@
     <div class="col-md-6">
         <div class="well">
             <h5><b>Name:</b> @Model.name</h5>
-            <h5><b>URI:</b> @Model.aliases[0].alias</h5>
-            <h5><b>Meeting ID:</b> @Model.aliases[1].alias</h5>
+            @if (Model.aliases.ElementAtOrDefault(0) != null)
+            {
+                <h5><b>URI:</b> @Model.aliases[0].alias</h5>
+            }
+            @if (Model.aliases.ElementAtOrDefault(1) != null)
+            {
+                <h5><b>Meeting ID:</b> @Model.aliases[1].alias</h5>
+            } 
             <h5><b>Host PIN:</b> @Model.pin</h5>
             <h5><b>Guest PIN:</b> @Model.guest_pin</h5>
+
+            @if (Model.tag != "")
+            {
+                <br>
+                <h5><b>Tag:</b></h5>
+                <h5>@Model.tag</h5>
+            }
+
         </div>
     </div>
 </div>

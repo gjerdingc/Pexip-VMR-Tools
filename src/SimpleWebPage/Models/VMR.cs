@@ -33,7 +33,7 @@ namespace SimpleWebPage.Models
         public string uuid { get; set; }
     }
 
-    public class VMR
+    public class VMR : System.IComparable<VMR>
     {
         public List<Alias> aliases { get; set; }
         public bool allow_guests { get; set; }
@@ -63,6 +63,15 @@ namespace SimpleWebPage.Models
         public string sync_tag { get; set; }
         public object system_location { get; set; }
         public string tag { get; set; }
+
+        public int CompareTo(VMR that)
+        {
+            int result = this.id.Value.CompareTo(that.id.Value);
+
+            return result;
+            
+            //throw new NotImplementedException();
+        }
     }
 
     public class RootObjectVMR
@@ -76,38 +85,4 @@ namespace SimpleWebPage.Models
         public Meta meta { get; set; }
         public List<Alias> objects { get; set; }
     }
-
-    //This is for reading JSON dump from file instead of using the API while testing
-    public class RootObjectFile
-    {
-        public object mssip_proxy { get; set; }
-        public bool allow_guests { get; set; }
-        public string creation_time { get; set; }
-        public string host_view { get; set; }
-        public object max_callrate_out { get; set; }
-        public string tag { get; set; }
-        public int id { get; set; }
-        public List<Alias> aliases { get; set; }
-        public string pin { get; set; }
-        public bool enable_overlay_text { get; set; }
-        public string sync_tag { get; set; }
-        public string call_type { get; set; }
-        public string replace_string { get; set; }
-        public string service_type { get; set; }
-        public bool mute_all_guests { get; set; }
-        public object max_callrate_in { get; set; }
-        public string description { get; set; }
-        public object participant_limit { get; set; }
-        public object guest_view { get; set; }
-        public string guest_pin { get; set; }
-        public object system_location { get; set; }
-        public IvrTheme ivr_theme { get; set; }
-        public string name { get; set; }
-        public string primary_owner_email_address { get; set; }
-        public List<object> automatic_participants { get; set; }
-        public string match_string { get; set; }
-        public bool force_presenter_into_main { get; set; }
-        public string resource_uri { get; set; }
-    }
-
 }

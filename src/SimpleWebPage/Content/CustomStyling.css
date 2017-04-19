@@ -14,3 +14,7 @@ a {
     color: forestgreen;
     text-decoration: none;
 }
+
+.well {
+    word-break:break-all;
+}

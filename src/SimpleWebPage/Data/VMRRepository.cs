@@ -55,11 +55,12 @@ namespace SimpleWebPage.Data
             }
             }*/
 
-
+        //Constructor. Loads up the class with VMRs from file
        public VMRRepository()
        {
             List<VMR> VMRs = JsonConvert.DeserializeObject<List<VMR>>(File.ReadAllText(@"c:\ToJson.txt"));
             _vmrs = VMRs;
+            _vmrs.Sort();
        }
 
         public VMR GetVMR(int id)
