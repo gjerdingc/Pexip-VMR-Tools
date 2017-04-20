@@ -56,6 +56,7 @@ namespace SimpleWebPage.Data
             }*/
 
         //Constructor. Loads up the class with VMRs from file
+        //Sorts them by id parameter in ascending order.
        public VMRRepository()
        {
             List<VMR> VMRs = JsonConvert.DeserializeObject<List<VMR>>(File.ReadAllText(@"c:\ToJson.txt"));
@@ -63,6 +64,8 @@ namespace SimpleWebPage.Data
             _vmrs.Sort();
        }
 
+
+        //Searches and returns VMR with given id parameter
         public VMR GetVMR(int id)
         {
             VMR vmrToReturn = null;
@@ -80,9 +83,19 @@ namespace SimpleWebPage.Data
             return vmrToReturn;
         }
 
-        public List<VMR> GetVMRList()
+        public List<VMR> GetVMRList(string NameToSearch)
         {
-            return _vmrs;
+            List<VMR> _vmrsToReturn = new List<VMR>();
+
+            foreach (VMR _vmr in _vmrs)
+            {
+                if (_vmr.aliases.ElementAtOrDefault(0) != null && _vmr.aliases[0].alias.ToLower().Contains(NameToSearch.ToLower()))
+                {
+                    _vmrsToReturn.Add(_vmr);
+                }
+            }
+
+            return _vmrsToReturn;
         }
     }
 }

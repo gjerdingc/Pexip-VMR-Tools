@@ -27,14 +27,16 @@ namespace SimpleWebPage.Controllers
                 return HttpNotFound();
             }
 
-            var VMR = _vmrRepository.GetVMR((int)id);
+            var VMR = _vmrRepository.GetVMR(id.Value);
 
             return View(VMR);
         }
 
         public ActionResult Index()
         {
-            var VMRList = _vmrRepository.GetVMRList();
+
+            var VMRList = _vmrRepository.GetVMRList("DeMO");
+
             return View(VMRList);
         }
 

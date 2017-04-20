@@ -70,7 +70,6 @@ namespace SimpleWebPage.Models
 
             return result;
             
-            //throw new NotImplementedException();
         }
     }
 
